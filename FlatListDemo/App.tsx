@@ -1,5 +1,6 @@
 // import { StatusBar } from 'expo-status-bar';z
 import { StyleSheet, Text, View ,Button, TouchableOpacity} from 'react-native';
+import DemoButton from './Source/ButtonDemo';
 import FlatListDemo from './Source/FlatListDemo';
 
 export default function App() {
@@ -9,10 +10,11 @@ export default function App() {
       {/* <Text>Open up App.tsx to start working on your app!</Text> */}
       {/* <StatusBar /> */}
       {/* {FlatListDemo()} */}
-      <Button title='"HomeScreen' onPress={() => {console.log("Hello! ")}}></Button>
-
-      <Button title='"FlatList'></Button> 
-      <TouchableOpacity ><Text>dsds</Text></TouchableOpacity>
+      {/* <Button title='"HomeScreen' onPress={() => {console.log("Hello! ")}}></Button> */}
+      
+      {/* <Button title='"FlatList'></Button>  */}
+      {/* <TouchableOpacity ><Text>dsds</Text></TouchableOpacity> */}
+      {DemoButton()}
     </View>
   );
 }
