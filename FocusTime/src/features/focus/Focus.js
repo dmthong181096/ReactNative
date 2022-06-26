@@ -3,9 +3,12 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { RoundedButton } from '../../components/RoundedButton';
+import { fontSizes,paddingSizes } from '../../utils/sizes';
 
 export const Focus = ({ addSubject }) => {
     const [tmpItem, setTmpItem] = useState(null)
+
+    const [focusSubject, setFocusSubject] = useState(null)
     return (
         <View style={styles.container}>
             <View style={styles.titleContainer}>
@@ -17,16 +20,15 @@ export const Focus = ({ addSubject }) => {
                     onSubmitEditing={({ nativeEvent }) => { setTmpItem(nativeEvent.text)}}></TextInput> */}
                 <TextInput
                     style={{ flex: 1, marginRight: 15 }}
-                    onEndEditing = {()=>{addSubject(tmpItem)}}
-                    onSubmitEditing = {()=>{addSubject(tmpItem)}}
+                    onEndEditing = {()=>{setFocusSubject(tmpItem)}}
+                    onSubmitEditing = {()=>{setFocusSubject(tmpItem)}}
                     onChangeText={setTmpItem}
                     // onSubmitEditing = {setTmpItem}
 
                     ></TextInput>
-
-                <RoundedButton title="+" size={60} onPress={() => { addSubject(tmpItem) }}></RoundedButton>
+                <RoundedButton title="+" size={60} onPress={() => { setFocusSubject(tmpItem) }}></RoundedButton>
             </View>
-
+            {focusSubject ?<Text style={styles.workCotainer}>{focusSubject}</Text> :<Text style={styles.workCotainer}>No Thing</Text>}
 
         </View>
     );
@@ -35,8 +37,8 @@ export const Focus = ({ addSubject }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 0.5,
-        padding: 20,
-        paddingTop: 100,
+        padding: paddingSizes.md,
+        paddingTop: paddingSizes.xxxl,
         justifyContent: 'center',
     },
     titleContainer: {
@@ -45,13 +47,20 @@ const styles = StyleSheet.create({
     },
     title: {
         color: "white",
-        fontSize: 32,
+        fontSize: fontSizes.xl,
         fontWeight: "bold"
     },
     inputContainer: {
-        paddingTop: 20,
+        paddingTop: paddingSizes.md,
         flexDirection: "row",
-        paddingBottom: 20,
+        // paddingBottom: paddingSizes.md,
         alignItems: "center"
+    },
+    workCotainer:  {
+        // flex: 1,
+        color: "white",
+        fontSize: fontSizes.lg,
+        fontWeight: "normal",
+
     }
 });
