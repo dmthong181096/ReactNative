@@ -3,10 +3,12 @@ import { View, Text, StyleSheet } from "react-native";
 import { CountDown } from "../../components/CountDown";
 import { RoundedButton } from "../../components/RoundedButton";
 import { fontSizes, paddingSizes } from '../../utils/sizes';
+import {ProgressBar} from "react-native-paper";
+
 
 export const Timer = ({ focusSubject }) => {
     const [isStart, setIsStart] = useState(false)
-
+    const [progress,setProgress] = useState(0)
     // const [titleBtn, setTitleBtn] = useState("Start")
     return (
         <View style={styles.container}>
@@ -17,6 +19,12 @@ export const Timer = ({ focusSubject }) => {
 
             <Text style={styles.title}>Timer goes here: </Text>
             <Text style={styles.task}>{focusSubject}</Text>
+            <View>
+                <ProgressBar 
+                style={styles.progressBar}
+                progress = {progress}
+                />
+            </View>
             <View style={styles.btnAction}>
                 {isStart ?
                     <RoundedButton title={"pause"} onPress={() => { setIsStart(!isStart) }}></RoundedButton> :
@@ -57,5 +65,10 @@ const styles = StyleSheet.create({
         marginTop: paddingSizes.xxxl,
         alignItems: "center",
         justifyContent: "center"
+    },
+    progressBar: {
+        color: '#5E84E2',
+        height: 10
     }
+
 })
