@@ -1,32 +1,42 @@
-import React ,{useState}from "react";
-import { View , Text, StyleSheet} from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet } from "react-native";
 import { CountDown } from "../../components/CountDown";
 import { RoundedButton } from "../../components/RoundedButton";
-import { fontSizes,paddingSizes } from '../../utils/sizes';
+import { fontSizes, paddingSizes } from '../../utils/sizes';
 
-export const Timer = ({focusSubject})=> {
+export const Timer = ({ focusSubject }) => {
     const [isStart, setIsStart] = useState(false)
+
     // const [titleBtn, setTitleBtn] = useState("Start")
     return (
-        <View style= {styles.container}>
-            <Text style = {styles.title}>Timer goes here: </Text>
-            <Text style={styles.task}>{focusSubject}</Text>
-            <View> 
-                <CountDown minutes={1} isPaused= {!isStart}></CountDown>
+        <View style={styles.container}>
+
+            <View>
+                <CountDown minutes={1} isPaused={!isStart}></CountDown>
             </View>
-            <RoundedButton size={80} title={"Start"} onPress ={()=>{setIsStart(!isStart)}}></RoundedButton>
-           
+
+            <Text style={styles.title}>Timer goes here: </Text>
+            <Text style={styles.task}>{focusSubject}</Text>
+            <View style={styles.btnAction}>
+                {isStart ?
+                    <RoundedButton title={"pause"} onPress={() => { setIsStart(!isStart) }}></RoundedButton> :
+                    <RoundedButton title={"start"} onPress={() => { setIsStart(!isStart) }}></RoundedButton>}
+            </View>
+            
+
+
+
         </View>
     )
 }
 const styles = StyleSheet.create({
     container: {
         flex: 0.5,
-        padding : paddingSizes.xxl
+        padding: paddingSizes.xxl
     },
-    title:  {
+    title: {
         // flex: 0.5,
-        paddingTop: paddingSizes.lg,
+        marginTop: paddingSizes.xxxl,
         color: "white",
         fontSize: fontSizes.lg,
         alignItems: "center",
@@ -35,13 +45,17 @@ const styles = StyleSheet.create({
     },
     task: {
         // flex: 0.5,
-        paddingTop: paddingSizes.lg,
+        marginTop: paddingSizes.lg,
         color: "white",
         fontSize: fontSizes.lg,
         alignItems: "center",
         fontWeight: "bold",
         textAlign: "center",
         justifyContent: "center",
-        
+    },
+    btnAction: {
+        marginTop: paddingSizes.xxxl,
+        alignItems: "center",
+        justifyContent: "center"
     }
 })
