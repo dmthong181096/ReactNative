@@ -4,11 +4,12 @@ import { StyleSheet, Text, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { RoundedButton } from '../../components/RoundedButton';
 import { fontSizes,paddingSizes } from '../../utils/sizes';
+import { Timer } from '../timer/Timer';
 
 export const Focus = ({ addSubject }) => {
     const [tmpItem, setTmpItem] = useState(null)
 
-    const [focusSubject, setFocusSubject] = useState(null)
+    // const [focusSubject, setFocusSubject] = useState("null")
     return (
         <View style={styles.container}>
             <View style={styles.titleContainer}>
@@ -20,15 +21,16 @@ export const Focus = ({ addSubject }) => {
                     onSubmitEditing={({ nativeEvent }) => { setTmpItem(nativeEvent.text)}}></TextInput> */}
                 <TextInput
                     style={{ flex: 1, marginRight: 15 }}
-                    onEndEditing = {()=>{setFocusSubject(tmpItem)}}
-                    onSubmitEditing = {()=>{setFocusSubject(tmpItem)}}
+                    onEndEditing = {()=>{addSubject(tmpItem)}}
+                    onSubmitEditing = {()=>{addSubject(tmpItem)}}
                     onChangeText={setTmpItem}
-                    // onSubmitEditing = {setTmpItem}
-
                     ></TextInput>
-                <RoundedButton title="+" size={60} onPress={() => { setFocusSubject(tmpItem) }}></RoundedButton>
+                <RoundedButton title="+" size={60} onPress={() => { addSubject(tmpItem) }}></RoundedButton>
             </View>
-            {focusSubject ?<Text style={styles.workCotainer}>{focusSubject}</Text> :<Text style={styles.workCotainer}>No Thing</Text>}
+            {/* {focusSubject ?
+            // <Text style={styles.workCotainer}>{focusSubject}</Text> 
+            <Timer style={styles.workCotainer} focusSubject = {focusSubject}></Timer>
+            :<Text style={styles.workCotainer}>No Thing</Text>} */}
 
         </View>
     );
