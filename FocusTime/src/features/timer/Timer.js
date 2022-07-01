@@ -8,21 +8,26 @@ import {ProgressBar} from "react-native-paper";
 
 export const Timer = ({ focusSubject }) => {
     const [isStart, setIsStart] = useState(false)
-    const [progress,setProgress] = useState(0)
+    const [progressBar,setProgress] = useState(1)
+    const onProgress1 = (progress)=> {
+        setProgress(progress)
+    }
     // const [titleBtn, setTitleBtn] = useState("Start")
     return (
         <View style={styles.container}>
 
             <View>
-                <CountDown minutes={1} isPaused={!isStart}></CountDown>
+                <CountDown minutes={1} isPaused={!isStart}  onProgress = {onProgress1}></CountDown>
             </View>
 
             <Text style={styles.title}>Timer goes here: </Text>
             <Text style={styles.task}>{focusSubject}</Text>
             <View>
                 <ProgressBar 
+                progress = {progressBar}
                 style={styles.progressBar}
-                progress = {progress}
+                
+      
                 />
             </View>
             <View style={styles.btnAction}>
@@ -67,6 +72,7 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     progressBar: {
+        marginTop: 30,
         color: '#5E84E2',
         height: 10
     }

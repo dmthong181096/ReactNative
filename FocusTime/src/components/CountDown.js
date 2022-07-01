@@ -6,6 +6,7 @@ const formatTime = (time) => time<10 ? `0${time}` : time
 export const CountDown = ({
     minutes = 0.1,
     isPaused,
+    onProgress,
     ...props
 
 })=> {
@@ -16,6 +17,8 @@ export const CountDown = ({
                 return time
             }
             const timeLeft = time - 1000
+            const percentProgress = timeLeft/minutesToMillis(minutes)
+            onProgress(percentProgress)
             return timeLeft
         })
 
