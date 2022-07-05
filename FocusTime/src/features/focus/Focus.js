@@ -7,7 +7,7 @@ import { fontSizes,paddingSizes } from '../../utils/sizes';
 import { Timer } from '../timer/Timer';
 
 export const Focus = ({ addSubject }) => {
-    const [tmpItem, setTmpItem] = useState(null)
+    const [subject, setSubject] = useState(null)
 
     // const [focusSubject, setFocusSubject] = useState("null")
     return (
@@ -21,11 +21,11 @@ export const Focus = ({ addSubject }) => {
                     onSubmitEditing={({ nativeEvent }) => { setTmpItem(nativeEvent.text)}}></TextInput> */}
                 <TextInput
                     style={{ flex: 1, marginRight: 15 }}
-                    onEndEditing = {()=>{addSubject(tmpItem)}}
-                    onSubmitEditing = {()=>{addSubject(tmpItem)}}
-                    onChangeText={setTmpItem}
+                    onEndEditing = {()=>{addSubject(subject)}}
+                    onSubmitEditing = {()=>{addSubject(subject)}}
+                    onChangeText={setSubject}
                     ></TextInput>
-                <RoundedButton title="+" size={60} onPress={() => { addSubject(tmpItem) }}></RoundedButton>
+                <RoundedButton title="+" size={60} onPress={() => { addSubject(subject) }}></RoundedButton>
             </View>
             {/* {focusSubject ?
             // <Text style={styles.workCotainer}>{focusSubject}</Text> 
