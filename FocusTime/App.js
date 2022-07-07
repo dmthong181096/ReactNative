@@ -16,9 +16,11 @@ export default function App() {
   const [focusHistory, setFocusHistory] = useState([])
   const addFocusHistorySubjectWithState = (subject, status) => {
     setFocusHistory([...focusHistory, { subject, status }])
-    console.log(focusHistory);
+    
   }
   const onClear = () => {
+    //Thứ gì do
+    setFocusHistory([])
 
   }
 
@@ -27,6 +29,7 @@ export default function App() {
       setFocusHistory([...focusHistory, focusSubject])
     }
   }, [focusSubject])
+  console.log(focusHistory);
 
 
   return (
@@ -34,13 +37,13 @@ export default function App() {
       {/* <View></View> */}
       {/* <Focus></Focus> */}
       {/* <Focus addSubject = {setFocusSubject}></Focus> */}
-      {focusSubject ? <Timer focusSubject={focusSubject}
+      {focusSubject ? (<Timer focusSubject={focusSubject}
         onTimerEnd={() => { addFocusHistorySubjectWithState(focusSubject, STATUSES.COMPLETE); setFocusSubject(null) }}
         clearSubject={() => { addFocusHistorySubjectWithState(focusSubject, STATUSES.CANCEL); setFocusSubject(null) }}
-      ></Timer> : (<Focus addSubject={setFocusSubject}>  </Focus>)}
-      <View>
-        <FocusHistory focusHistory={focusHistory} onClear={onClear}></FocusHistory>
-      </View>
+      ></Timer>) : 
+      (<><Focus addSubject={setFocusSubject}/> 
+      <FocusHistory focusHistory={focusHistory} onClear={onClear}/></>)}
+    
 
 
     </View>

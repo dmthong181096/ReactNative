@@ -11,7 +11,7 @@ const DEFAULT_TIME = 0.1
 export const Timer = ({ focusSubject, onTimerEnd , clearSubject}) => {
     useKeepAwake()
     const [minutes, setMinutes] = useState(DEFAULT_TIME)
-    const [isStart, setIsStart] = useState(false)
+    const [isStart, setIsStart] = useState(true)
     const [progressBar, setProgress] = useState(1)
     const onProgress1 = (progress) => {
         setProgress(progress)
@@ -29,13 +29,21 @@ export const Timer = ({ focusSubject, onTimerEnd , clearSubject}) => {
         vibarate()
         setMinutes(DEFAULT_TIME)
         setProgress(1)
-        setIsStart(false)
+        setIsStart(true)
         onTimerEnd()
     }
     const changeTime = (min) => {
-        setMinutes(min)
+        
         setProgress(1)
-        setIsStart(false)
+        setMinutes(min)
+        setIsStart(!isStart)
+        
+        
+        
+        
+       
+       
+
 
     }
     // const [titleBtn, setTitleBtn] = useState("Start")
@@ -44,8 +52,9 @@ export const Timer = ({ focusSubject, onTimerEnd , clearSubject}) => {
 
             <View >
                 <CountDown minutes={minutes}
-                    isPaused={!isStart}
+
                     onProgress={onProgress1}
+                    isPaused={!isStart}
                     onEnd={onEnd}
                 >
                 </CountDown>

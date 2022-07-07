@@ -2,11 +2,12 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { RoundedButton } from "../../components/RoundedButton";
 import { paddingSizes } from "../../utils/sizes";
+const DEFAULT_TIME = 1
 export const Timing = ({onChangeTime}) => {
     return (
         <>
             <View style={styles.timingButton}>
-                <RoundedButton size={75} title={"10"} onPress={() => onChangeTime(10)}>
+                <RoundedButton size={75} title={"10"} onPress={() => onChangeTime(1)}>
 
                 </RoundedButton>
 
