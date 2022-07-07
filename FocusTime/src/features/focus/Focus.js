@@ -27,6 +27,7 @@ export const Focus = ({ addSubject }) => {
                     ></TextInput>
                 <RoundedButton title="+" size={60} onPress={() => { addSubject(subject) }}></RoundedButton>
             </View>
+
             {/* {focusSubject ?
             // <Text style={styles.workCotainer}>{focusSubject}</Text> 
             <Timer style={styles.workCotainer} focusSubject = {focusSubject}></Timer>
