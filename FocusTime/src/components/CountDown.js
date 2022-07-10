@@ -4,7 +4,7 @@ const minutesToMillis = (minutes)=> minutes*1000*60
 const formatTime = (time) => time<10 ? `0${time}` : time
 
 export const CountDown = ({
-    minutes = 0.1,
+    minutes = 1,
     isPaused,
     onProgress,
     onEnd,
