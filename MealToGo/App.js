@@ -1,48 +1,21 @@
-import { StatusBar as ExpoStatusBar} from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, View ,Platform, StatusBar} from 'react-native';
+/* eslint-disable react/react-in-jsx-scope */
+// import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 
-const isAndroid = function() {
-  Platform.OS === 'android' 
-}
+import {
+  // StyleSheet,
+} from "react-native";
+import { RestaurantScreen } from "./src/Features/Restaurant/Screens/restaurant.screen";
+
+
 // const isAndroid =
 // console.log(StatusBar.currentHeight)
 export default function App() {
-  return (
-    <SafeAreaView  style = {{flex: 1 , marginTop: isAndroid ? StatusBar.currentHeight : 0 }}>
-      <View style={styles.header}>
-        <Text>FIND</Text>
-        {/* <StatusBar style="auto" /> */}
 
-      </View>
-      <View style = {styles.body}>
-      <Text >BODY</Text>
-      </View>
-    </SafeAreaView>
+  return (
+
+    <RestaurantScreen></RestaurantScreen>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // backgroundColor: 'red',
-    // alignItems: 'center',
-    // justifyContent: 'center',
 
-  },
-  header: {
-    flex: 0.05,
-    backgroundColor: 'green',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    padding: 20,
 
-  },
-  body: {
-    flex: 0.95,
-    backgroundColor: 'red',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    padding: 20,
-
-  },
-});
