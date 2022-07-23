@@ -1,66 +1,40 @@
 // import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Platform,
-  StatusBar,
-} from "react-native";
+import { SafeAreaView, View, StatusBar } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { RestaurantInfo } from "../Components/restaurant-info.components";
-StatusBar;
-const isAndroid = function () {
-  Platform.OS === "android";
-};
+import styled from "styled-components";
+import { RestaurantInfoCard } from "../Components/restaurant-info-card.components";
+const SafeArea = styled(SafeAreaView)`
+  flex: 1;
+  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`}
+`;
+const Header = styled(View)`
+  flex: 0.05;
+  padding: 20px;
+`;
+const Body = styled(View)`
+  flex: 0.95;
+  padding: 20px;
+`;
+// const isAndroid = function () {
+//   Platform.OS === "android";
+// };
 export const RestaurantScreen = () => {
   const [searchData, setSearchData] = useState("");
   const onChangeText = (text) => setSearchData(text);
   return (
-    <SafeAreaView
-      style={{ flex: 1, marginTop: isAndroid ? StatusBar.currentHeight : 0 }}
-    >
-      <View style={styles.header}>
+    <SafeArea>
+      <Header>
         <Searchbar
           onChangeText={onChangeText}
           placeholder={"Search"}
+          value={searchData}
         ></Searchbar>
-      </View>
-      <View style = {styles.body}>
-        <RestaurantInfo></RestaurantInfo>
-        <RestaurantInfo></RestaurantInfo>
-        <RestaurantInfo></RestaurantInfo>
-        <RestaurantInfo></RestaurantInfo>
-        <RestaurantInfo></RestaurantInfo>
-        <RestaurantInfo></RestaurantInfo>
-        <RestaurantInfo></RestaurantInfo>
-        <RestaurantInfo></RestaurantInfo>
-      </View>
-    </SafeAreaView>
+      </Header>
+      <Body>
+        <RestaurantInfoCard></RestaurantInfoCard>
+        <RestaurantInfoCard></RestaurantInfoCard>
+      </Body>
+    </SafeArea>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // backgroundColor: 'red',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-  header: {
-    flex: 0.05,
-    // backgroundColor: "green",
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    padding: 20,
-  },
-  body: {
-    flex: 0.95,
-    // backgroundColor: "red",
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    padding: 20,
-  },
-  card: {
-    padding: 20
-  }
-});
