@@ -33,6 +33,7 @@ export const RestaurantScreen = () => {
       <Body>
         <RestaurantInfoCard restaurant={""}></RestaurantInfoCard>
         <RestaurantInfoCard></RestaurantInfoCard>
+        <RestaurantInfoCard></RestaurantInfoCard>
       </Body>
     </SafeArea>
   );
