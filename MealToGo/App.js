@@ -6,6 +6,8 @@ import { RestaurantScreen } from "./src/Features/Restaurant/Screens/restaurant.s
 import { theme } from "./src/infrastructure/theme";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import Ionicons from '@expo/vector-icons/Ionicons';
+import Ionicons from "react-native-vector-icons/Ionicons";
 // import AppLoading from 'expo-app-loading';
 import {
   useFonts as useFontOswald,
@@ -17,19 +19,12 @@ import {
 } from "@expo-google-fonts/lato";
 import { MapScreen } from "./src/Features/Restaurant/Screens/map.screen";
 import { SettingScreen } from "./src/Features/Restaurant/Screens/setting.screen";
-import { View,Text } from "react-native";
-function RestaurantScreens() {
-  return (
-    <RestaurantScreen></RestaurantScreen>
-  );
-}
-function MapScreens() {
-  return <MapScreen></MapScreen>
-}
-function SettingScreens() {
-  return <SettingScreen></SettingScreen>
-}
-const Tab = createBottomTabNavigator()
+const Tab = createBottomTabNavigator();
+const TAB_ICON = {
+  Restaurant: "ios-home",
+  Map: "map-sharp",
+  Setting: "settings-sharp",
+};
 export default function App() {
   const [oswaldLoaded] = useFontOswald({
     Oswald_400Regular,
@@ -43,16 +38,38 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-
         {/* <RestaurantScreen></RestaurantScreen> */}
-      </ThemeProvider>
-      <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen  name="Restaurant"  component={RestaurantScreens} options={{ tabBarBadge: 5 }}/>
-          <Tab.Screen name="Map"  component={MapScreens} />
-          <Tab.Screen name="Setting"  component={SettingScreens}/>
+        <NavigationContainer>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
+
+                if (route.name === "Restaurant") {
+                  iconName = TAB_ICON.Restaurant;
+                } else if (route.name === "Map") {
+                  iconName = TAB_ICON.Map;
+                } else {
+                  iconName = TAB_ICON.Setting;
+                }
+
+                // You can return any component that you like here!
+                return <Ionicons name={iconName} size={size} color={color}/>;
+              },
+              tabBarActiveTintColor: "tomato",
+              tabBarInactiveTintColor: "gray",
+            })}
+          >
+            <Tab.Screen
+              name="Restaurant"
+              component={RestaurantScreen}
+              options={{ tabBarBadge: 5 }}
+            />
+            <Tab.Screen name="Map" component={MapScreen} />
+            <Tab.Screen name="Setting" component={SettingScreen} />
           </Tab.Navigator>
         </NavigationContainer>
+      </ThemeProvider>
     </>
   );
 }
