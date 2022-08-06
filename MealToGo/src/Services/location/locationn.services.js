@@ -13,7 +13,7 @@ export function locationRequest(searchTerm){
 export const locationTransform =(data)=> {
     const formattedRespone = camelize(data)
     const {geometry} = formattedRespone.results[0]
-    console.log(geometry);
+
     const {lng, lat} = geometry.location
     return {lng,lat}
 }

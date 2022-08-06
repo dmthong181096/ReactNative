@@ -7,6 +7,8 @@ import { theme } from "../../../infrastructure/theme";
 import { RestaurantContext } from "../../../Services/Restaurant/restaurant.context";
 import { RestaurantInfoCard } from "../Components/restaurant-info-card.components";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
+import { Search } from "../../../Components/search/search.components";
+
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
   ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`}
@@ -89,19 +91,15 @@ const DATA = [
 ];
 
 export const RestaurantScreen = () => {
-  const [searchData, setSearchData] = useState("");
-  const onChangeText = (text) => setSearchData(text);
+
+ 
   const { isLoading, error, restaurants } = useContext(RestaurantContext);
   // console.log(restaurants);
 
   return (
     <SafeArea>
       <Header>
-        <Searchbar
-          onChangeText={onChangeText}
-          placeholder={"Search"}
-          value={searchData}
-        ></Searchbar>
+        <Search ></Search>
       </Header>
       <Body>
         {isLoading ? (
