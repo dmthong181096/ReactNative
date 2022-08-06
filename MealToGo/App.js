@@ -8,7 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // import Ionicons from '@expo/vector-icons/Ionicons';
 import Ionicons from "react-native-vector-icons/Ionicons";
-// import AppLoading from 'expo-app-loading';
+
 import {
   useFonts as useFontOswald,
   Oswald_400Regular,
@@ -19,6 +19,8 @@ import {
 } from "@expo-google-fonts/lato";
 import { MapScreen } from "./src/Features/Restaurant/Screens/map.screen";
 import { SettingScreen } from "./src/Features/Restaurant/Screens/setting.screen";
+import { restauratRequests } from "./src/Services/Restaurant/restaurant.services";
+import { RestaurantContextProvider } from "./src/Services/Restaurant/restaurant.context";
 const Tab = createBottomTabNavigator();
 const TAB_ICON = {
   Restaurant: "ios-home",
@@ -37,9 +39,12 @@ export default function App() {
   }
   return (
     <>
+
       <ThemeProvider theme={theme}>
         {/* <RestaurantScreen></RestaurantScreen> */}
+        <RestaurantContextProvider>
         <NavigationContainer>
+          
           <Tab.Navigator
             screenOptions={({ route }) => ({
               tabBarIcon: ({ focused, color, size }) => {
@@ -69,6 +74,7 @@ export default function App() {
             <Tab.Screen name="Setting" component={SettingScreen} />
           </Tab.Navigator>
         </NavigationContainer>
+        </RestaurantContextProvider>
       </ThemeProvider>
     </>
   );

@@ -1,11 +1,12 @@
 // import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import { SafeAreaView, View, StatusBar, FlatList } from "react-native";
+import React, { useState, useContext } from "react";
+import { SafeAreaView, View, StatusBar, FlatList, Text } from "react-native";
 import { FAB, Searchbar } from "react-native-paper";
 import styled from "styled-components";
 import { theme } from "../../../infrastructure/theme";
+import { RestaurantContext } from "../../../Services/Restaurant/restaurant.context";
 import { RestaurantInfoCard } from "../Components/restaurant-info-card.components";
-
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
   ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`}
@@ -17,6 +18,11 @@ const Header = styled(View)`
 const Body = styled(View)`
   flex: 1;
   padding: ${theme.space[3]};
+`;
+const Loading = styled(ActivityIndicator)`
+  flex: 1;
+  justifycontent: center;
+  aligncontent: center;
 `;
 const RestaurantList = styled(FlatList)``;
 const DATA = [
@@ -82,10 +88,11 @@ const DATA = [
   },
 ];
 
-
 export const RestaurantScreen = () => {
   const [searchData, setSearchData] = useState("");
   const onChangeText = (text) => setSearchData(text);
+  const { isLoading, error, restaurants } = useContext(RestaurantContext);
+  // console.log(restaurants);
 
   return (
     <SafeArea>
@@ -97,13 +104,18 @@ export const RestaurantScreen = () => {
         ></Searchbar>
       </Header>
       <Body>
-        <RestaurantList
-          data={DATA}
-          renderItem={(item) => (
-            <RestaurantInfoCard restaurant={DATA[item.index]} />
-          )}
-          keyExtractor={(item) => item.id}
-        />
+        {isLoading ? (
+          <Loading animating={true} size="150" />
+        ) : (
+          <RestaurantList
+            data={restaurants}
+            renderItem={({ item }) => {
+              return <RestaurantInfoCard restaurant={item} />;
+            }}
+
+            // keyExtractor={(item) => item}
+          />
+        )}
       </Body>
     </SafeArea>
   );
