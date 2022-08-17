@@ -1,13 +1,21 @@
 // import { StatusBar } from "expo-status-bar";
 import React, { useState, useContext } from "react";
-import { SafeAreaView, View, StatusBar, FlatList, Text } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  StatusBar,
+  FlatList,
+  Text,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
 import { FAB, Searchbar } from "react-native-paper";
 import styled from "styled-components";
 import { theme } from "../../../infrastructure/theme";
 import { RestaurantContext } from "../../../Services/Restaurant/restaurant.context";
 import { RestaurantInfoCard } from "../Components/restaurant-info-card.components";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
-import { Search } from "../../../Components/search/search.components";
+import { Search } from "../Components/search/search.component";
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
@@ -90,16 +98,15 @@ const DATA = [
   },
 ];
 
-export const RestaurantScreen = () => {
-
- 
-  const { isLoading, error, restaurants } = useContext(RestaurantContext);
+export const RestaurantScreen = ({ navigation }) => {
+  const { isLoading, error, restaurants, placeId } =
+    useContext(RestaurantContext);
   // console.log(restaurants);
 
   return (
     <SafeArea>
       <Header>
-        <Search ></Search>
+        <Search></Search>
       </Header>
       <Body>
         {isLoading ? (
@@ -108,7 +115,22 @@ export const RestaurantScreen = () => {
           <RestaurantList
             data={restaurants}
             renderItem={({ item }) => {
-              return <RestaurantInfoCard restaurant={item} />;
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("RestaurantsDetail",{
+                      // restaurant: item.name,
+                      // address: item.address,
+                      // isOpenNow: item.isOpenNow,
+                      // rating: item.rating,
+                      // isClosedTemporarily: item.isClosedTemporarily,
+                      restaurantInfo: item
+                    });
+                  }}  
+                >
+                 <RestaurantInfoCard restaurant={item} />
+                </TouchableOpacity>
+              );
             }}
 
             // keyExtractor={(item) => item}
