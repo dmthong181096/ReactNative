@@ -16,6 +16,7 @@ import { RestaurantContext } from "../../../Services/Restaurant/restaurant.conte
 import { RestaurantInfoCard } from "../Components/restaurant-info-card.components";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import { Search } from "../Components/search/search.component";
+import { FavouritesContext } from "../../../Services/Favourites/favourites.context";
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
@@ -101,7 +102,9 @@ const DATA = [
 export const RestaurantScreen = ({ navigation }) => {
   const { isLoading, error, restaurants, placeId } =
     useContext(RestaurantContext);
-  // console.log(restaurants);
+
+  const {favourites} = useContext(FavouritesContext)
+  // console.log(favourites);
 
   return (
     <SafeArea>
@@ -119,11 +122,6 @@ export const RestaurantScreen = ({ navigation }) => {
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("RestaurantsDetail",{
-                      // restaurant: item.name,
-                      // address: item.address,
-                      // isOpenNow: item.isOpenNow,
-                      // rating: item.rating,
-                      // isClosedTemporarily: item.isClosedTemporarily,
                       restaurantInfo: item
                     });
                   }}  

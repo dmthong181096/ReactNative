@@ -1,11 +1,10 @@
 /* eslint-disable react/react-in-jsx-scope */
 // import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import * as a from 'react-native-gesture-handler';
+import * as a from "react-native-gesture-handler";
 import React from "react";
 import { ThemeProvider } from "styled-components";
 
 import { theme } from "./src/infrastructure/theme";
-
 
 import {
   useFonts as useFontOswald,
@@ -19,7 +18,7 @@ import {
 import { RestaurantContextProvider } from "./src/Services/Restaurant/restaurant.context";
 import { LocationContextProvider } from "./src/Services/location/location.context";
 import { Navigator } from "./src/infrastructure/navigation/index.navigator";
-
+import { FavouritesContextProvider } from "./src/Services/Favourites/favourites.context";
 
 export default function App() {
   const [oswaldLoaded] = useFontOswald({
@@ -34,12 +33,13 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <LocationContextProvider>
-        <RestaurantContextProvider>
-          <Navigator/>
-
-        </RestaurantContextProvider>
-        </LocationContextProvider>
+        <FavouritesContextProvider>
+          <LocationContextProvider>
+            <RestaurantContextProvider>
+              <Navigator />
+            </RestaurantContextProvider>
+          </LocationContextProvider>
+        </FavouritesContextProvider>
       </ThemeProvider>
     </>
   );

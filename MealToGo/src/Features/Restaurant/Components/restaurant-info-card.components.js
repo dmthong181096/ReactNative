@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { theme } from "../../../infrastructure/theme";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
+import { Favourites } from "../../../Components/favourites/favourites.component";
 
 const Title = styled(Text)`
 
@@ -58,8 +59,9 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   return (
     <>
       <RestaurantCard elevation={5}>
-      
+        <Favourites restaurant={restaurant}></Favourites>
         <RestaurantCardCover source={{ uri: photos[0] }} key={name} />
+        
         <Info>
         
         <Title>{name}</Title>
