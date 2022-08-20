@@ -1,5 +1,5 @@
 import React from "react";
-import {  Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 import styled from "styled-components";
@@ -61,23 +61,21 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
       <RestaurantCard elevation={5}>
         <Favourites restaurant={restaurant}></Favourites>
         <RestaurantCardCover source={{ uri: photos[0] }} key={name} />
-        
+
         <Info>
-        
-        <Title>{name}</Title>
+          <Title>{name}</Title>
           <Rating>
             <Star>
               {ratingArray.map((e, index) => (
                 <SvgXml key={index} width="20" height="20" xml={star} />
               ))}
             </Star>
-            
+
             <StatusOpen>
-              
               {isClosedTemporarily && (
                 <CloseTemporarily>CLOSED TEMPORARILY</CloseTemporarily>
               )}
-              
+
               {isOpenNow && <SvgXml width="30" height="30" xml={open} />}
             </StatusOpen>
           </Rating>
@@ -87,4 +85,3 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     </>
   );
 };
-

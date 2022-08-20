@@ -17,6 +17,7 @@ import { RestaurantInfoCard } from "../Components/restaurant-info-card.component
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import { Search } from "../Components/search/search.component";
 import { FavouritesContext } from "../../../Services/Favourites/favourites.context";
+import { FavouritesBar } from "../../../Components/favourites/favourites-bar.component";
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
@@ -103,15 +104,25 @@ export const RestaurantScreen = ({ navigation }) => {
   const { isLoading, error, restaurants, placeId } =
     useContext(RestaurantContext);
 
-  const {favourites} = useContext(FavouritesContext)
+  const { favourites } = useContext(FavouritesContext);
+
+  const [isToggleFavourites, setIsToggleFavourites] = useState(false);
   // console.log(favourites);
 
   return (
     <SafeArea>
       <Header>
-        <Search></Search>
+        <Search
+          isFavouritesToggle={isToggleFavourites}
+          onFavouritesToggle={() => {
+            setIsToggleFavourites(!isToggleFavourites);
+          }}
+        />
       </Header>
       <Body>
+        {isToggleFavourites ? (
+          <FavouritesBar navigation={navigation} favourites={favourites} />
+        ) : null}
         {isLoading ? (
           <Loading animating={true} size="150" />
         ) : (
@@ -121,12 +132,12 @@ export const RestaurantScreen = ({ navigation }) => {
               return (
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate("RestaurantsDetail",{
-                      restaurantInfo: item
+                    navigation.navigate("RestaurantsDetail", {
+                      restaurantInfo: item,
                     });
-                  }}  
+                  }}
                 >
-                 <RestaurantInfoCard restaurant={item} />
+                  <RestaurantInfoCard restaurant={item} />
                 </TouchableOpacity>
               );
             }}
