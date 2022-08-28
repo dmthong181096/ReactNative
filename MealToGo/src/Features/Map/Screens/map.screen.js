@@ -15,12 +15,10 @@ export const MapScreen = ({ navigation }) => {
   const { restaurants = [] } = useContext(RestaurantContext);
   const [latDelta, setLatDelta] = useState(0);
   const { viewport, lng, lat } = location;
-  // console.log(viewport);
   useEffect(() => {
     const northeastLat = viewport.northeast.lat;
     const southwestLng = viewport.southwest.lat;
     setLatDelta(northeastLat - southwestLng);
-    // console.log("Lat---", latDelta);
   }, [location, viewport]);
   return (
     <>
@@ -41,15 +39,13 @@ export const MapScreen = ({ navigation }) => {
               coordinate={{
                 latitude: restaurant.geometry.location.lat,
                 longitude: restaurant.geometry.location.lng,
-              }}
-            >
+              }}>
               <MapView.Callout
                 onPress={() =>
                   navigation.navigate("RestaurantsDetail", {
                     restaurantInfo: restaurant,
                   })
-                }
-              >
+                }>
                 <TouchableOpacity>
                   <MapCallOut restaurant={restaurant}></MapCallOut>
                 </TouchableOpacity>

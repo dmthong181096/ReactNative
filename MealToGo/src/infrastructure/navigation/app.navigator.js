@@ -17,7 +17,7 @@ const TAB_ICON = {
   Setting: "settings-sharp",
 };
 export const AppNavigator=() =>{
-  return  <NavigationContainer>
+  return (
     <Tab.Navigator
       screenOptions={ ({ route }) => ({headerShown: false,
         tabBarIcon: ({ focused, color, size }) => {
@@ -48,6 +48,6 @@ export const AppNavigator=() =>{
       <Tab.Screen name="Map" component={MapScreen} />
       <Tab.Screen name="Setting" component={SettingScreen} />
     </Tab.Navigator>
-  </NavigationContainer>
+  )
 
 }

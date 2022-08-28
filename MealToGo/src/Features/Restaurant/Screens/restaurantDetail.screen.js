@@ -11,7 +11,6 @@ const Body = styled(View)`
 `;
 
 export const RestaurantDetailScreen = ({ route }) => {
-  // console.log(route.params)
   const { restaurantInfo } = route.params;
   const [expandedBreak, setExpandedBreak] = React.useState(false);
   const [expandedHamburger, setExpandedHamburger] = React.useState(false);
