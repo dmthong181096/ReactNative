@@ -42,20 +42,20 @@ if (!app) {
 
 
 export default function App() {
-  const [isAuthenticated, setIsAuthennticated] = useState(false)
-  useEffect(() => {
-    const auth = getAuth()
-    signInWithEmailAndPassword(auth, "demo@gmail.com", "123456")
-      .then((userCredential) => {
-        setIsAuthennticated(true)
-        const user = userCredential.user;
-      })
-      .catch((error) => {
-        setIsAuthennticated(false)
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
-  }, [])
+  // const [isAuthenticated, setIsAuthennticated] = useState(false)
+  // useEffect(() => {
+  //   const auth = getAuth()
+  //   signInWithEmailAndPassword(auth, "demo@gmail.com", "123456")
+  //     .then((userCredential) => {
+  //       setIsAuthennticated(true)
+  //       const user = userCredential.user;
+  //     })
+  //     .catch((error) => {
+  //       setIsAuthennticated(false)
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //     });
+  // }, [])
 
 
 

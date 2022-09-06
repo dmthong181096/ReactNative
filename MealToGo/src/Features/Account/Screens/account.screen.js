@@ -6,20 +6,15 @@ import {
   AccountBackground,
   AccountOverlay,
   AccountContainer,
+  Spacer,
+  AccountButton
 } from "../../../Components/account/account.style";
-const AuthButton = styled(Button)`
-  marginLeft: 40px;
-  marginRight: 40px;
-`;
-const Spacer = styled(View)`
-  margin: 10px;
-`
 export const AccountScreen = ({navigation}) => {
   return (
     <AccountBackground>
       <AccountOverlay>
         <AccountContainer>
-          <AuthButton
+          <AccountButton
             icon="login"
             mode="contained"
             onPress={() => {
@@ -27,15 +22,16 @@ export const AccountScreen = ({navigation}) => {
             }}
           >
             LOGIN
-          </AuthButton>
+          </AccountButton>
           <Spacer/>
-          <AuthButton
+          <AccountButton
             icon="lock-outline"
             mode="contained"
-            onPress={() => console.log("Pressed")}
+            onPress={() =>  navigation.navigate("Register")
+          }
           >
             REGISTER
-          </AuthButton>
+          </AccountButton>
         </AccountContainer>
       </AccountOverlay>
     </AccountBackground>
