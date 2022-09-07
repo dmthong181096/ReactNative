@@ -7,11 +7,12 @@ import {
   AccountButton,
   Input,
   Spacer,
+  ErrorToast,
 } from "../../../Components/account/account.style";
 import { AuthenticationContext } from "../../../Services/Authentication/authentication.context";
 
 export const RegisterScreen = () => {
-  const {onRegister}  = useContext(AuthenticationContext)
+  const {onRegister,error}  = useContext(AuthenticationContext)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   return (
@@ -24,6 +25,7 @@ export const RegisterScreen = () => {
             <Spacer />
           <Input label="Confirm Password"/>
           <Spacer/>
+          {error && <ErrorToast>{error}</ErrorToast>}
           <AccountButton icon="lock" mode="contained" onPress={()=>onRegister(email,password)}>REGISTER</AccountButton>
         </AccountContainer>
       </AccountOverlay>

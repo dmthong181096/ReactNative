@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageBackground, View } from "react-native";
+import { ImageBackground, View,Text } from "react-native";
 import { Button,TextInput } from "react-native-paper";
 import styled from "styled-components";
 export const  AccountBackground = styled.ImageBackground.attrs({
@@ -33,9 +33,15 @@ export const AccountButton = styled(Button)`
     alignContent: center;
 `
 export const Input = styled(TextInput)`
-  marginLeft: 20px;
-  marginRight: 20px;
+    marginLeft: 20px;
+    marginRight: 20px;
 `;
 export const Spacer = styled(View)`
-  margin: 5px;
+    margin: 5px;
+`
+export const ErrorToast = styled(Text)`
+    marginLeft: 20px;
+    marginRight: 20px;
+    marginBottom: 5px;
+    color: red;
 `

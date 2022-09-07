@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+
 import { TextInput } from "react-native-paper";
 import styled from "styled-components";
 import { AuthenticationContext } from "../../../Services/Authentication/authentication.context";
@@ -9,12 +10,13 @@ import {
   Spacer,
   AccountButton,
   Input,
+  ErrorToast
 } from "../../../Components/account/account.style";
+import { View,Text } from "react-native";
 
 export const LoginScreen = () => {
   const [isHidden, setIsHidden] = useState(true);
   const { onLogin, error } = useContext(AuthenticationContext);
-  console.log("error ne",error);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
  
@@ -46,9 +48,7 @@ export const LoginScreen = () => {
             onChangeText={(text) => setPassword(text)}
           />
           <Spacer />
-          {/* {error && <View><Text>{console.log("Da vào dc")}</Text></View>}
-           */}
-           {console.log(error)}
+          {error && <ErrorToast>*{error}</ErrorToast>}
           <AccountButton
             icon="login"
             mode="contained"

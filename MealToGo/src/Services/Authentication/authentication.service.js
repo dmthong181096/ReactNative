@@ -4,25 +4,17 @@ import { getAuth, signInWithEmailAndPassword ,createUserWithEmailAndPassword} fr
 
 export const loginRequest = (email, password) => {
     const auth = getAuth()
-   
-    signInWithEmailAndPassword(getAuth(), email, password)
-    // .then((userCredential) => {
-    //     const user = userCredential.user
-    //     console.log("LOGIN SUCCESS",user.email)
-    // }).catch((e) => {
-    //     console.log("Service",e.message.toString());
-    // })
+   return signInWithEmailAndPassword(getAuth(), email, password)
 
 }
 export const registerRequest = (email, password) => {
     const auth = getAuth()
    
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        const user = userCredential.user
-        console.log("REGISTER SUCCESS",user.email)
-    }).catch((error) => {
-        console.log(error.message);
-    })
+    return createUserWithEmailAndPassword(auth, email, password)
+    // .then((userCredential) => {
+    //     const user = userCredential.user
+    // }).catch((error) => {
+    //     console.log(error.message);
+    // })
 
 }
