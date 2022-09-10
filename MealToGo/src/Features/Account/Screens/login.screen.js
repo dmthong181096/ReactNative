@@ -1,7 +1,5 @@
 import React, { useState, useContext } from "react";
-
 import { TextInput } from "react-native-paper";
-import styled from "styled-components";
 import { AuthenticationContext } from "../../../Services/Authentication/authentication.context";
 import {
   AccountBackground,
@@ -10,20 +8,23 @@ import {
   Spacer,
   AccountButton,
   Input,
-  ErrorToast
+  ErrorToast,
+  Title,
+  ButtonBack
 } from "../../../Components/account/account.style";
-import { View,Text } from "react-native";
-
-export const LoginScreen = () => {
+export const LoginScreen = ({navigation}) => {
   const [isHidden, setIsHidden] = useState(true);
-  const { onLogin, error } = useContext(AuthenticationContext);
+  const { onLogin, error,isLoading } = useContext(AuthenticationContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
- 
+
   return (
     <AccountBackground>
       <AccountOverlay>
+      
         <AccountContainer>
+        <Title>MEALS TO GO</Title>
+        <Spacer></Spacer>
           <Input
             label="Email"
             mode="Outlined"
@@ -45,11 +46,13 @@ export const LoginScreen = () => {
                 onPressOut={() => setIsHidden(true)}
               />
             }
+            
             onChangeText={(text) => setPassword(text)}
           />
           <Spacer />
           {error && <ErrorToast>*{error}</ErrorToast>}
           <AccountButton
+          loading = {isLoading}
             icon="login"
             mode="contained"
             onPress={() => {
@@ -59,7 +62,18 @@ export const LoginScreen = () => {
             LOGIN
           </AccountButton>
         </AccountContainer>
+        <ButtonBack
+            
+            icon="login"
+            mode="contained"
+            onPress={() => {
+              navigation.goBack();
+            }}
+          >
+            BACK
+          </ButtonBack>
       </AccountOverlay>
+      
     </AccountBackground>
   );
 };

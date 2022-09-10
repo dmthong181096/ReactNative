@@ -7,33 +7,48 @@ import {
   AccountOverlay,
   AccountContainer,
   Spacer,
-  AccountButton
+  AccountButton,
+  Title,
+  TitleContainer,
+  AccountView,
+  AnimatioWrapper,
 } from "../../../Components/account/account.style";
-export const AccountScreen = ({navigation}) => {
+import LottieView from "lottie-react-native";
+export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
-      <AccountOverlay>
-        <AccountContainer>
-          <AccountButton
-            icon="login"
-            mode="contained"
-            onPress={() => {
-              navigation.navigate("Login");
-            }}
-          >
-            LOGIN
-          </AccountButton>
-          <Spacer/>
-          <AccountButton
-            icon="lock-outline"
-            mode="contained"
-            onPress={() =>  navigation.navigate("Register")
-          }
-          >
-            REGISTER
-          </AccountButton>
-        </AccountContainer>
-      </AccountOverlay>
+      <AccountView>
+        <AccountOverlay>
+        <AnimatioWrapper>
+            <LottieView
+              autoPlay
+              resizeMode="cover"
+              source={require("../../../../assets/watermelon.json")}
+            />
+          </AnimatioWrapper>
+          <AccountContainer>
+            <Title>MEALS TO GO</Title>
+            <Spacer></Spacer>
+            <AccountButton
+              icon="login"
+              mode="contained"
+              onPress={() => {
+                navigation.navigate("Login");
+              }}
+            >
+              LOGIN
+            </AccountButton>
+            <Spacer />
+            <AccountButton
+              icon="lock-outline"
+              mode="contained"
+              onPress={() => navigation.navigate("Register")}
+            >
+              REGISTER
+            </AccountButton>
+          </AccountContainer>
+        </AccountOverlay>
+      </AccountView>
     </AccountBackground>
   );
 };

@@ -28,18 +28,14 @@ const firebaseConfig = {
   projectId: "mealstogorn-27904",
   storageBucket: "mealstogorn-27904.appspot.com",
   messagingSenderId: "327213360444",
-  appId: "1:327213360444:web:230ae562cc727f81c3ea39"
+  appId: "1:327213360444:web:230ae562cc727f81c3ea39",
 };
 
 // Initialize Firebase
-const app = null
+const app = null;
 if (!app) {
   const app = initializeApp(firebaseConfig);
 }
-
-
-
-
 
 export default function App() {
   // const [isAuthenticated, setIsAuthennticated] = useState(false)
@@ -57,8 +53,6 @@ export default function App() {
   //     });
   // }, [])
 
-
-
   const [oswaldLoaded] = useFontOswald({
     Oswald_400Regular,
   });
@@ -72,13 +66,7 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <AuthenticationContextProvider>
-          <FavouritesContextProvider>
-            <LocationContextProvider>
-              <RestaurantContextProvider>
-                <Navigator />
-              </RestaurantContextProvider>
-            </LocationContextProvider>
-          </FavouritesContextProvider>
+          <Navigator />
         </AuthenticationContextProvider>
       </ThemeProvider>
     </>
