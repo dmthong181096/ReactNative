@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FlatList,
   View,
@@ -34,9 +34,31 @@ const DATA = [
   },
   {
     id: 5,
-    value: 0.0,
+    value: 13,
   },
 ];
+const setData = (index,value) =>{
+  if (value.length<=0 || isNaN(value)) {
+    return
+  }
+    if (indexBaoHienTai==0) {
+      resetData()
+    }
+    DATA[index].value = parseFloat(value)
+    indexBaoHienTai++
+    if (indexBaoHienTai>=DATA.length) {
+      indexBaoHienTai=0
+    }
+}
+const resetData = () =>{
+  DATA.forEach((item)=>{
+    item.value = 0.0
+  })
+}
+
+let indexBaoHienTai = 0
+
+
 const ItemTotalBao = () => {
   return (
     <TouchableOpacity
@@ -103,13 +125,16 @@ const ItemBaoHienTai = (value,key) => {
         }}
 
       >
-        {value.toFixed(1)}
+        {value!=undefined && value.toFixed(2)}
       </Text>
     </TouchableOpacity>
   );
 };
+const indexBaoHiennTai = 0;
 
 export const FooterCanLua = () => {
+  const [kgHienTai, setKgHienTai] = useState(null)
+  const [index,setIndex ] = useState(0)
   return (
     <FooterContainer>
       <Total>
@@ -125,7 +150,20 @@ export const FooterCanLua = () => {
       <TextInput
         mode="outlined"
         label={"Nhập số cân (kg)"}
+        value= {kgHienTai}
         keyboardType="number-pad"
+        onChangeText={(text)=>setKgHienTai(text)}
+        right ={<TextInput.Icon
+          icon="send"
+          onPress={ ()=>{
+            setData(index,kgHienTai)
+            setKgHienTai("")
+            // indexBaoHiennTai = indexBaoHiennTai+1
+            setIndex(indexBaoHienTai)
+          }}
+          onPressIn={() => {}}
+          onPressOut={() => {}}
+        />}
       ></TextInput>
     </FooterContainer>
   );
